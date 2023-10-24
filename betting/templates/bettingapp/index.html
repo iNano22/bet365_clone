@@ -39,7 +39,7 @@
       <!-- top nav structure -->
       <nav class="top-nav container flex-between-center">
         <ul class="top-nav__menu">
-          <li>Sports</li>
+          <a style="color: inherit;" href="{% url 'home' %}"><li>Sports</li></a>
           <li>Fantasy</li>
           <li>Casino</li>
           <li>Live Casino</li>
@@ -76,12 +76,20 @@
           <div class="main-nav__search">
             <i class="fa fa-magnifying-glass fa-2x"></i>
           </div>
+          {% if user.is_authenticated %}
+            <p>Welcome {{ user.username  }}</p>
+          <div class="main-nav__login">
+            <a href="{% url 'signout' %}"><button>Log out</button></a>
+          </div>
+          {% else %}
           <div class="main-nav__join">
             <a href="{% url 'registration' %}"><button>Join</button></a>
           </div>
           <div class="main-nav__login">
-            <a href="{% url 'login' %}" data-toggle="modal" data-target="#loginModal"><button>Log in</button></a>
+            <a href="{% url 'login_view' %}"><button>Log in</button></a>
           </div>
+          {% endif %}
+
         </div>
       </nav>
     </header>

@@ -8,8 +8,9 @@ def home(request):
     return render(request, 'bettingapp/index.html')
 
 
-def login(request):
+def login_view(request):
     return render(request, 'bettingapp/login.html')
+
 
 
 def registration(request):
@@ -57,13 +58,14 @@ def signin(request):
 
         user = authenticate(request=request, username=username, password=password)
         if user is not None:
-            login(request)  # Make sure to include 'user' here
+            login(request, user) 
             messages.success(request, "Logged in successfully")
             return render(request, "bettingapp/index.html", {"username": username})
         else:
             messages.error(request, "Bad credentials")
-            return redirect('login')
+            return redirect('login_view')  
     return render(request, "bettingapp/index.html")
+
 
 
 def index(request):
@@ -74,4 +76,4 @@ def index(request):
 def signout(request):
     logout(request)
     messages.success(request, "Logged out in successfully")
-    return render(request, "bettingapp/index.html")
+    return redirect("home") 
