@@ -281,7 +281,7 @@
        <div class="main-content__championship__head grid container" onClick=render(match.fixture.id)>
         <div class="main-content__fav">
           <img
-            src={{match.league.logo}}
+            src={{match.league.flag}}
             alt="Favorite icon"
             loading="lazy"
           />
@@ -320,7 +320,7 @@
           <div class="main-content__championship__body__data-item">
             <div class="main-content__championship__body__time">
 
-              {{ match.fixture.date }}
+              <p>{{ match.fixture.status.elapsed}}'</p>
           
             </div>
       
@@ -329,17 +329,19 @@
             <p>{{match.teams.home.name}}</p>
             <p>{{match.teams.away.name}}</p>
           </div>
-          <div class="main-content__fav">
+          <div class="main-content__fav" id="statistics-icon" data-match-id="{{ match.fixture.id }}">
             <img
-              src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}"
-              alt="Statistics icon"
-              loading="lazy"
+                src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}"
+                alt="Statistics icon"
+                loading="lazy"
+                onclick="handleStatisticsClick(this)"
             />
             <img
-              src="{% static 'bettingapp/assets/content-icons/data-statistics-active.png' %}"
-              alt="Active statistics icon"
-              loading="lazy"
-              class="main-content__fav__active"
+                src="{% static 'bettingapp/assets/content-icons/data-statistics-active.png' %}"
+                alt="Active statistics icon"
+                loading="lazy"
+                class="main-content__fav__active"
+                onclick="handleStatisticsClick(this)"
             />
           </div>
           <div class="main-content__championship__body__insights">
@@ -543,6 +545,7 @@
             </ul>
           </div>
         </section>
+        <section>
         <footer class="main-content__footer">
           <div class="container">
             <div class="footer__help">
@@ -683,15 +686,40 @@
           </div>
         </footer>
       </section>
-      <!-- side bar structure -->
-  
+      <aside class="side-bar">
+        <div id="wg-api-football-game"
+          data-host="v3.football.api-sports.io"
+          data-key="a10dd4036df5c7323538e962bbac57a6"
+          data-id="971331"
+          data-theme=""
+          data-refresh="15"
+          data-show-errors="false"
+          data-show-logos="true">
+        </div>
+        <script
+          type="module"
+          src="https://widgets.api-sports.io/2.0.3/widgets.js">
+        </script>
+        <script>
+          function handleStatisticsClick(element) {
+              // Get the match id from the data attribute of the clicked element
+              var matchId = element.parentElement.getAttribute("data-match-id");
+      
+              // Update the data-id attribute of the target widget with the match id
+              var targetWidget = document.getElementById("wg-api-football-game");
+              if (targetWidget) {
+                  targetWidget.setAttribute("data-id", matchId);
+      
+                  // Reload the widget (if needed)
+                  // Note: This might depend on the specific behavior of the widget script
+                  if (window.widgets && window.widgets.reload) {
+                      window.widgets.reload(targetWidget);
+                  }
+              }
+          }
+      </script>
       </aside>
     </main>
-    <script>
-      function render(id){
-        console.log('clicked');
-      }
-    </script>
   </body>
  
 </html>

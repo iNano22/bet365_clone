@@ -69,12 +69,9 @@ def signin(request):
 
 
 def index(request):
-    team = 'tirana'  # Define the 'team' variable with the value 'tirana'
     return render(request, 'bettingapp/index.html', {
         'username': request.person.username,
         'messages': messages.get_messages(request),
-        
-        'team': team  # Pass the 'team' variable to the template
     })
 
 
