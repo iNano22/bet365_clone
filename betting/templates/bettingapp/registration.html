@@ -52,7 +52,7 @@
         <!-- top nav structure -->
         <nav class="top-nav  flex-between-center">
           <ul class="top-nav__menu" style="margin-left: 20px;">
-            <a style="color: inherit;" href="{% url 'home' %}"><li>Sports</li></a> 
+            <li>Sports</li> 
             <li>Fantasy</li>
             <li>Casino</li>
             <li>Live Casino</li>
@@ -73,6 +73,7 @@
             <span>A-Z</span>
           </div>
           <div class="main-nav__logo" style="margin-left: 20px;">
+            <a href="{% url 'home' %}">
             <img src="{% static 'bettingapp/assets/logo/main-logo.png' %}" alt="logo" loading="lazy" />
             <img
               src="{% static 'bettingapp/assets/logo/small-logo.png' %}"
@@ -80,6 +81,7 @@
               loading="lazy"
               class="main-nav__alt-logo"
             />
+            </a>
           </div>
         </nav>
       </header>

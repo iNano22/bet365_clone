@@ -2,10 +2,11 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from datetime import datetime
 
 
 def home(request):
-    return render(request, 'bettingapp/index.html')
+    return render(request, 'bettingapp/index.html',{'teams':matches_data})
 
 
 def login_view(request):
@@ -60,20 +61,55 @@ def signin(request):
         if user is not None:
             login(request, user) 
             messages.success(request, "Logged in successfully")
-            return render(request, "bettingapp/index.html", {"username": username})
+            return render(request, "bettingapp/index.html", {"username": username,'data': 'dsadadss'})
         else:
             messages.error(request, "Bad credentials")
             return redirect('login_view')  
     return render(request, "bettingapp/index.html")
 
 
-
 def index(request):
-    return render(request, 'bettingapp/index.html',
-                  {'username': request.person.username, 'messages': messages.get_messages(request)})
+    team = 'tirana'  # Define the 'team' variable with the value 'tirana'
+    return render(request, 'bettingapp/index.html', {
+        'username': request.person.username,
+        'messages': messages.get_messages(request),
+        
+        'team': team  # Pass the 'team' variable to the template
+    })
 
 
 def signout(request):
     logout(request)
     messages.success(request, "Logged out in successfully")
     return redirect("home") 
+
+
+import http.client
+import json
+
+def get_football_data(endpoint, headers):
+    conn = http.client.HTTPSConnection("v3.football.api-sports.io")
+
+    conn.request("GET", "/fixtures?live=all", headers=headers)
+
+    res = conn.getresponse()
+    data = res.read().decode("utf-8")
+    # Check if the response is in JSON format
+    try:
+        data = json.loads(data)
+        team_info = data["response"]
+    
+    except json.JSONDecodeError:
+        pass
+
+    conn.close()
+    return team_info
+
+# Example usage to get matches
+headers = {
+    'x-rapidapi-host': "v3.football.api-sports.io",
+    'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
+}
+
+matches_endpoint = "/teams"
+matches_data = get_football_data(matches_endpoint, headers)
