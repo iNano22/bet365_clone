@@ -30,6 +30,9 @@
     <!-- Main style -->
 
     <link rel="stylesheet" href="{% static 'bettingapp/style/style.css' %}" />
+    <!-- Include jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 
 
   </head>
@@ -278,7 +281,7 @@
         <section class="main-content__body">
           <article class="main-content__championship">
        {%for match in teams%}
-       <div class="main-content__championship__head grid container" onClick=render(match.fixture.id)>
+       <div class="main-content__championship__head grid container">
         <div class="main-content__fav">
           <img
             src={{match.league.flag}}
@@ -334,14 +337,6 @@
                 src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}"
                 alt="Statistics icon"
                 loading="lazy"
-                onclick="handleStatisticsClick(this)"
-            />
-            <img
-                src="{% static 'bettingapp/assets/content-icons/data-statistics-active.png' %}"
-                alt="Active statistics icon"
-                loading="lazy"
-                class="main-content__fav__active"
-                onclick="handleStatisticsClick(this)"
             />
           </div>
           <div class="main-content__championship__body__insights">
@@ -360,6 +355,8 @@
             loading="lazy"
           />
           <img
+            id="match-data"
+            data-match-id="{{ match.fixture.id }}"
             src="{% static 'bettingapp/assets/content-icons/video-icon-active.png' %}"
             alt="Active play icon"
             loading="lazy"
@@ -687,37 +684,41 @@
         </footer>
       </section>
       <aside class="side-bar">
-        <div id="wg-api-football-game"
+        <div>
+        
+          <div id="wg-api-football-game"
           data-host="v3.football.api-sports.io"
           data-key="a10dd4036df5c7323538e962bbac57a6"
-          data-id="971331"
+          data-id=""
           data-theme=""
           data-refresh="15"
           data-show-errors="false"
           data-show-logos="true">
+          </div>
         </div>
         <script
           type="module"
           src="https://widgets.api-sports.io/2.0.3/widgets.js">
         </script>
         <script>
-          function handleStatisticsClick(element) {
-              // Get the match id from the data attribute of the clicked element
-              var matchId = element.parentElement.getAttribute("data-match-id");
-      
-              // Update the data-id attribute of the target widget with the match id
-              var targetWidget = document.getElementById("wg-api-football-game");
-              if (targetWidget) {
-                  targetWidget.setAttribute("data-id", matchId);
-      
-                  // Reload the widget (if needed)
-                  // Note: This might depend on the specific behavior of the widget script
-                  if (window.widgets && window.widgets.reload) {
-                      window.widgets.reload(targetWidget);
-                  }
-              }
-          }
-      </script>
+          document.addEventListener('click', function (event) {
+
+            if (!event.target.matches('#match-data')) return
+            event.preventDefault()
+        
+            let id = event.target.getAttribute('data-match-id')
+        
+            let widget = document.getElementById('wg-api-football-game')
+            widget.innerHTML = ''
+            widget.setAttribute('data-id', id);
+        
+            window.document.dispatchEvent(new Event("DOMContentLoaded", {
+              bubbles: true,
+              cancelable: true
+            }));
+        })
+        
+      </script>        
       </aside>
     </main>
   </body>
