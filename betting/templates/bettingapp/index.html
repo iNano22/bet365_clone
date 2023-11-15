@@ -285,12 +285,12 @@
         <div class="main-content__fav">
           <img
             src={{match.league.flag}}
-            alt="Favorite icon"
+            alt="Country Flag"
             loading="lazy"
           />
           <img
             src={{match.league.flag}}
-            alt="Active Favorite icon"
+            alt="Country Flag"
             loading="lazy"
             class="main-content__fav__active"
           />
@@ -696,30 +696,30 @@
           data-show-logos="true">
           </div>
         </div>
-        <script
-          type="module"
-          src="https://widgets.api-sports.io/2.0.3/widgets.js">
-        </script>
-        <script>
-          document.addEventListener('click', function (event) {
-
-            if (!event.target.matches('#match-data')) return
-            event.preventDefault()
-        
-            let id = event.target.getAttribute('data-match-id')
-        
-            let widget = document.getElementById('wg-api-football-game')
-            widget.innerHTML = ''
-            widget.setAttribute('data-id', id);
-        
-            window.document.dispatchEvent(new Event("DOMContentLoaded", {
-              bubbles: true,
-              cancelable: true
-            }));
-        })
-        
-      </script>        
       </aside>
+      <script
+        type="module"
+        src="https://widgets.api-sports.io/2.0.3/widgets.js">
+      </script>
+      <script>
+        document.addEventListener('click', function (event) {
+  
+          if (!event.target.matches('#match-data')) return
+          event.preventDefault()
+      
+          let id = event.target.getAttribute('data-match-id')
+      
+          let widget = document.getElementById('wg-api-football-game')
+          widget.innerHTML = ''
+          widget.setAttribute('data-id', id);
+      
+          window.document.dispatchEvent(new Event("DOMContentLoaded", {
+            bubbles: true,
+            cancelable: true
+          }));
+      })
+      
+    </script>        
     </main>
   </body>
  

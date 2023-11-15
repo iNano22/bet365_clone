@@ -6,7 +6,16 @@ from datetime import datetime
 
 
 def home(request):
-    return render(request, 'bettingapp/index.html',{'teams':matches_data})
+    # Fetch data from the API every time the home page is loaded
+    headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
+    }
+    matches_endpoint = "/teams"
+    teams = get_football_data(matches_endpoint, headers)
+
+    return render(request, 'bettingapp/index.html', {'teams': teams})
+
 
 
 def login_view(request):
@@ -102,11 +111,4 @@ def get_football_data(endpoint, headers):
     conn.close()
     return team_info
 
-# Example usage to get matches
-headers = {
-    'x-rapidapi-host': "v3.football.api-sports.io",
-    'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
-}
 
-matches_endpoint = "/teams"
-matches_data = get_football_data(matches_endpoint, headers)
