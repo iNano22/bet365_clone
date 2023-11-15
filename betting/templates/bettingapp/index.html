@@ -209,7 +209,6 @@
                     loading="lazy"
                   />
                 {% endif %}
-                <img src={{match.league.flag}} alt="Country Flag" loading="lazy" class="main-content__fav__active" />
               </div>
               <p class="main-content__championship__head__text">
                 {{match.league.name}}
@@ -237,10 +236,6 @@
                 <div class="main-content__championship__body__name">
                   <p>{{match.teams.home.name}}</p>
                   <p>{{match.teams.away.name}}</p>
-                </div>
-                <div class="main-content__fav" id="statistics-icon" data-match-id="{{ match.fixture.id }}">
-                  <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
-                    loading="lazy" />
                 </div>
                 <div class="main-content__championship__body__insights">
                   <span>{{match.goals.home}}</span>
@@ -274,14 +269,14 @@
                   {% endif %}
                    - {{ match.odds.odds.0.values.2.odd }}
                 </p>
-              </div>              
-              <div class="main-content__fav fav-symbol">
-                <img src="{% static 'bettingapp/assets/content-icons/video-icon.png' %}" alt="Play icon"
+              </div>  
+              <div class="main-content__fav">
+                <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
                   loading="lazy" />
                 <img id="match-data" data-match-id="{{ match.fixture.id }}"
-                  src="{% static 'bettingapp/assets/content-icons/video-icon-active.png' %}" alt="Active play icon"
-                  loading="lazy" class="main-content__fav__active" />
-              </div>
+                src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
+                loading="lazy" class="main-content__fav__active" />
+              </div>            
             </div>
             {%endfor%}
 
