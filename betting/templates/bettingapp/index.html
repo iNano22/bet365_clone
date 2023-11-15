@@ -74,7 +74,7 @@
             <i class="fa fa-magnifying-glass fa-2x"></i>
           </div>
           {% if user.is_authenticated %}
-          <p>Welcome {{ user.username  }}</p>
+          <div style="font-weight: bold; font-size: 13px; color: #ffdf1b"><p>Welcome {{ user.username  }}</p></div>
           <div class="main-nav__login">
             <a href="{% url 'signout' %}"><button>Log out</button></a>
           </div>
@@ -194,10 +194,21 @@
         <section class="main-content__body">
           <article class="main-content__championship">
             {%for match in fixtures%}
-            <p>{{match.odds.odds.0}}</p>
             <div class="main-content__championship__head grid container">
               <div class="main-content__fav">
-                <img src={{match.league.flag}} alt="Country Flag" loading="lazy" />
+                {% if match.league.flag %}
+                  <img
+                    src="{{ match.league.flag }}"
+                    alt="Country Flag"
+                    loading="lazy"
+                  />
+                {% else %}
+                  <img
+                    src="{{ match.league.logo }}"
+                    alt="League Logo"
+                    loading="lazy"
+                  />
+                {% endif %}
                 <img src={{match.league.flag}} alt="Country Flag" loading="lazy" class="main-content__fav__active" />
               </div>
               <p class="main-content__championship__head__text">
@@ -237,9 +248,33 @@
                   <span>{{match.goals.away}}</span>
                 </div>
               </div>
-              <div class="main-content__championship__body__num">{{match.odds.odds.0.name}}</div>
-              <div class="main-content__championship__body__num">2.40</div>
-              <div class="main-content__championship__body__num">1.95</div>
+              <div class="main-content__championship__body__num">
+                <p>
+                  {{ match.odds.odds.0.values.0.value }} 
+                  {% if match.odds.odds.0.values.0.handicap and match.odds.odds.0.values.0.handicap != "None" %}
+                    {{ match.odds.odds.0.values.0.handicap }}
+                  {% endif %}
+                  - {{ match.odds.odds.0.values.0.odd }}
+                </p>
+              </div>              
+              <div class="main-content__championship__body__num">
+                <p>
+                  {{ match.odds.odds.0.values.1.value }} 
+                  {% if match.odds.odds.0.values.1.handicap and match.odds.odds.0.values.1.handicap != "None" %}
+                    {{ match.odds.odds.0.values.1.handicap }}
+                  {% endif %}
+                  - {{ match.odds.odds.0.values.1.odd }}
+                </p>
+              </div>              
+              <div class="main-content__championship__body__num">
+                <p>
+                  {{ match.odds.odds.0.values.2.value }} 
+                  {% if match.odds.odds.0.values.2.handicap and match.odds.odds.0.values.2.handicap != "None" %}
+                    {{ match.odds.odds.0.values.2.handicap }}
+                  {% endif %}
+                   - {{ match.odds.odds.0.values.2.odd }}
+                </p>
+              </div>              
               <div class="main-content__fav fav-symbol">
                 <img src="{% static 'bettingapp/assets/content-icons/video-icon.png' %}" alt="Play icon"
                   loading="lazy" />
@@ -521,9 +556,13 @@
         </section>
         <aside class="side-bar">
           <div>
-
-            <div id="wg-api-football-game" data-host="v3.football.api-sports.io"
-              data-key="a10dd4036df5c7323538e962bbac57a6" data-id="" data-theme="" data-show-errors="false"
+            <div id="wg-api-football-game" 
+              data-host="v3.football.api-sports.io"
+              data-key="a10dd4036df5c7323538e962bbac57a6" 
+              data-id="" 
+              data-theme="dark" 
+              data-refresh=""
+              data-show-errors="false"
               data-show-logos="true">
             </div>
           </div>
@@ -532,15 +571,13 @@
         </script>
         <script>
           document.addEventListener('click', function (event) {
-            let widget = "";
-            widget = document.getElementById('wg-api-football-game')
 
-            widget.innerHTML = ''
             if (!event.target.matches('#match-data')) return
-
-
+            event.preventDefault()
+            
             let id = event.target.getAttribute('data-match-id')
 
+            let widget = document.getElementById('wg-api-football-game')
             widget.innerHTML = ''
             widget.setAttribute('data-id', id);
 
