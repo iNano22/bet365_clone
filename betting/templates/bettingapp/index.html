@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -13,20 +14,14 @@
     <!-- The icon -->
     <link rel="icon" href="assets/logo.ico" />
     <!--Load font awesome library -->
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
       integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
-      crossorigin="anonymous"
-      referrerpolicy="no-referrer"
-    />
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet" />
     <!-- Main style -->
 
     <link rel="stylesheet" href="{% static 'bettingapp/style/style.css' %}" />
@@ -36,6 +31,7 @@
 
 
   </head>
+
   <body>
     <!-- header structure -->
     <header>
@@ -64,14 +60,10 @@
         </div>
         <div class="main-nav__logo">
           <a href="{% url 'home' %}">
-          <img src="{% static 'bettingapp/assets/logo/main-logo.png' %}" alt="logo" loading="lazy" />
-          <img
-            src="{% static 'bettingapp/assets/logo/small-logo.png' %}"
-            alt="logo"
-            loading="lazy"
-            class="main-nav__alt-logo"
-          />
-        </a>
+            <img src="{% static 'bettingapp/assets/logo/main-logo.png' %}" alt="logo" loading="lazy" />
+            <img src="{% static 'bettingapp/assets/logo/small-logo.png' %}" alt="logo" loading="lazy"
+              class="main-nav__alt-logo" />
+          </a>
         </div>
         <ul class="main-nav__content">
           <li>Sports</li>
@@ -82,7 +74,7 @@
             <i class="fa fa-magnifying-glass fa-2x"></i>
           </div>
           {% if user.is_authenticated %}
-            <p>Welcome {{ user.username  }}</p>
+          <p>Welcome {{ user.username  }}</p>
           <div class="main-nav__login">
             <a href="{% url 'signout' %}"><button>Log out</button></a>
           </div>
@@ -98,152 +90,81 @@
         </div>
       </nav>
     </header>
-        
+
     <!-- main content structure -->
     <main class="content">
-      
+
       <section class="main-content">
         <nav class="main-content__nav container">
           <ul class="main-content__icons">
             <li>
-           
-         
-              <img
-                src="{% static 'bettingapp/assets/content-icons/fav-icon.png' %}"
-                alt="Favorite icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/fav-icon-active.png' %}"
-                alt="Active favorite icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+
+
+              <img src="{% static 'bettingapp/assets/content-icons/fav-icon.png' %}" alt="Favorite icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/fav-icon-active.png' %}" alt="Active favorite icon"
+                loading="lazy" class="main-content__active" />
               <p>Favourites</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/football-icon.png' %}"
-                alt="Ball icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/football-icon-active.png' %}"
-                alt="Active ball icon"
-                loading="lazy"
-                class="main-content__activeball"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/football-icon.png' %}" alt="Ball icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/football-icon-active.png' %}" alt="Active ball icon"
+                loading="lazy" class="main-content__activeball" />
               <p>Soccer</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/tennis-icon.png' %}"
-                alt="Tennis ball icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/tennis-icon-active.png' %}"
-                alt="Active Tennis ball icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/tennis-icon.png' %}" alt="Tennis ball icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/tennis-icon-active.png' %}"
+                alt="Active Tennis ball icon" loading="lazy" class="main-content__active" />
               <p>Tennis</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/badminton-icon.png' %}"
-                alt="Badminton icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/badminton-icon-active.png' %}"
-                alt="Active badminton icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/badminton-icon.png' %}" alt="Badminton icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/badminton-icon-active.png' %}"
+                alt="Active badminton icon" loading="lazy" class="main-content__active" />
               <p>Badminton</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/basketball-icon.png' %}"
-                alt="Basketball icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/basketball-icon-active.png' %}"
-                alt="Active basketball icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/basketball-icon.png' %}" alt="Basketball icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/basketball-icon-active.png' %}"
+                alt="Active basketball icon" loading="lazy" class="main-content__active" />
               <p>Basketball</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/volleyball-icon.png' %}"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/volleyball-icon-active.png' %}"
-                alt="Active beach volleyball"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/volleyball-icon.png' %}" loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/volleyball-icon-active.png' %}"
+                alt="Active beach volleyball" loading="lazy" class="main-content__active" />
               <p>Volleyball</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/cricket-icon.png' %}"
-                alt="Cricket icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/cricket-icon-active.png' %}"
-                alt="Active cricket icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/cricket-icon.png' %}" alt="Cricket icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/cricket-icon-active.png' %}"
+                alt="Active cricket icon" loading="lazy" class="main-content__active" />
               <p>Cricket</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/darts-icon.png' %}"
-                alt="Darten icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/darts-icon-active.png' %}"
-                alt="Active Darten icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/darts-icon.png' %}" alt="Darten icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/darts-icon-active.png' %}" alt="Active Darten icon"
+                loading="lazy" class="main-content__active" />
               <p>Darts</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/trotting-icon.png' %}"
-                alt="Draf sport icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/trotting-icon-active.png' %}"
-                alt="Active draf sport icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/trotting-icon.png' %}" alt="Draf sport icon"
+                loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/trotting-icon-active.png' %}"
+                alt="Active draf sport icon" loading="lazy" class="main-content__active" />
               <p>Trotting</p>
             </li>
             <li>
-              <img
-                src="{% static 'bettingapp/assets/content-icons/golf-icon.png' %}"
-                alt="Golf icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/content-icons/golf-icon-active.png' %}"
-                alt="Active golf icon"
-                loading="lazy"
-                class="main-content__active"
-              />
+              <img src="{% static 'bettingapp/assets/content-icons/golf-icon.png' %}" alt="Golf icon" loading="lazy" />
+              <img src="{% static 'bettingapp/assets/content-icons/golf-icon-active.png' %}" alt="Active golf icon"
+                loading="lazy" class="main-content__active" />
               <p>Golf</p>
             </li>
           </ul>
@@ -251,18 +172,10 @@
         <header class="main-content__head container flex-between-center">
           <div class="main-content__left-head flex-between-center">
             <h2>Soccer</h2>
-            <img
-              src="{% static 'bettingapp/assets/content-icons/statistics-icon.png' %}"
-              alt="Statistics bar"
-              loading="lazy"
-              class="main-content__statistics"
-            />
-            <img
-              src="{% static 'bettingapp/assets/content-icons/statistics-icon-active.png' %}"
-              alt="Active statistics bar"
-              loading="lazy"
-              class="main-content__active-statistics"
-            />
+            <img src="{% static 'bettingapp/assets/content-icons/statistics-icon.png' %}" alt="Statistics bar"
+              loading="lazy" class="main-content__statistics" />
+            <img src="{% static 'bettingapp/assets/content-icons/statistics-icon-active.png' %}"
+              alt="Active statistics bar" loading="lazy" class="main-content__active-statistics" />
           </div>
           <div class="main-content__right-head flex-between-center">
             <p>Fulltime Result</p>
@@ -280,109 +193,72 @@
         </header>
         <section class="main-content__body">
           <article class="main-content__championship">
-       {%for match in teams%}
-       <div class="main-content__championship__head grid container">
-        <div class="main-content__fav">
-          <img
-            src={{match.league.flag}}
-            alt="Country Flag"
-            loading="lazy"
-          />
-          <img
-            src={{match.league.flag}}
-            alt="Country Flag"
-            loading="lazy"
-            class="main-content__fav__active"
-          />
-        </div>
-        <p class="main-content__championship__head__text">
-         {{match.league.name}}
-        </p>
-        <div class="main-content__championship__head__num1">1</div>
-        <div class="main-content__championship__head__num2">X</div>
-        <div class="main-content__championship__head__num3">2</div>
-        <div class="main-content__championship__head__symbol"></div>
-      </div>
-      <div class="main-content__championship__body grid container">
-        <div class="main-content__fav">
-          <img
-            src="{% static 'bettingapp/assets/content-icons/fav-icon-star.png' %}"
-            alt="Favorite icon"
-            loading="lazy"
-          />
-          <img
-            src="{% static 'bettingapp/assets/content-icons/fav-icon-star-active.png' %}"
-            alt="Active Favorite icon"
-            loading="lazy"
-            class="main-content__fav__active"
-          />
-        </div>
-        <div
-          class="main-content__championship__body__text flex-between-center"
-        >
-          <div class="main-content__championship__body__data-item">
-            <div class="main-content__championship__body__time">
-
-              <p>{{ match.fixture.status.elapsed}}'</p>
-          
+            {%for match in fixtures%}
+            <p>{{match.odds.odds.0}}</p>
+            <div class="main-content__championship__head grid container">
+              <div class="main-content__fav">
+                <img src={{match.league.flag}} alt="Country Flag" loading="lazy" />
+                <img src={{match.league.flag}} alt="Country Flag" loading="lazy" class="main-content__fav__active" />
+              </div>
+              <p class="main-content__championship__head__text">
+                {{match.league.name}}
+              </p>
+              <div class="main-content__championship__head__num1">{{match.odds.odds.0.name}}</div>
+           
+              <div class="main-content__championship__head__symbol"></div>
             </div>
-      
-          </div>
-          <div class="main-content__championship__body__name">
-            <p>{{match.teams.home.name}}</p>
-            <p>{{match.teams.away.name}}</p>
-          </div>
-          <div class="main-content__fav" id="statistics-icon" data-match-id="{{ match.fixture.id }}">
-            <img
-                src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}"
-                alt="Statistics icon"
-                loading="lazy"
-            />
-          </div>
-          <div class="main-content__championship__body__insights">
-            <span>{{match.goals.home}}</span>
-            <br />
-            <span>{{match.goals.away}}</span>
-          </div>
-        </div>
-        <div class="main-content__championship__body__num">7.00</div>
-        <div class="main-content__championship__body__num">2.40</div>
-        <div class="main-content__championship__body__num">1.95</div>
-        <div class="main-content__fav fav-symbol">
-          <img
-            src="{% static 'bettingapp/assets/content-icons/video-icon.png' %}"
-            alt="Play icon"
-            loading="lazy"
-          />
-          <img
-            id="match-data"
-            data-match-id="{{ match.fixture.id }}"
-            src="{% static 'bettingapp/assets/content-icons/video-icon-active.png' %}"
-            alt="Active play icon"
-            loading="lazy"
-            class="main-content__fav__active"
-          />
-        </div>
-      </div>
-       {%endfor%}
-        
+            <div class="main-content__championship__body grid container">
+              <div class="main-content__fav">
+                <img src="{% static 'bettingapp/assets/content-icons/fav-icon-star.png' %}" alt="Favorite icon"
+                  loading="lazy" />
+                <img src="{% static 'bettingapp/assets/content-icons/fav-icon-star-active.png' %}"
+                  alt="Active Favorite icon" loading="lazy" class="main-content__fav__active" />
+              </div>
+              <div class="main-content__championship__body__text flex-between-center">
+                <div class="main-content__championship__body__data-item">
+                  <div class="main-content__championship__body__time">
+
+                    <p>{{ match.fixture.status.elapsed}}'</p>
+
+                  </div>
+
+                </div>
+                <div class="main-content__championship__body__name">
+                  <p>{{match.teams.home.name}}</p>
+                  <p>{{match.teams.away.name}}</p>
+                </div>
+                <div class="main-content__fav" id="statistics-icon" data-match-id="{{ match.fixture.id }}">
+                  <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
+                    loading="lazy" />
+                </div>
+                <div class="main-content__championship__body__insights">
+                  <span>{{match.goals.home}}</span>
+                  <br />
+                  <span>{{match.goals.away}}</span>
+                </div>
+              </div>
+              <div class="main-content__championship__body__num">{{match.odds.odds.0.name}}</div>
+              <div class="main-content__championship__body__num">2.40</div>
+              <div class="main-content__championship__body__num">1.95</div>
+              <div class="main-content__fav fav-symbol">
+                <img src="{% static 'bettingapp/assets/content-icons/video-icon.png' %}" alt="Play icon"
+                  loading="lazy" />
+                <img id="match-data" data-match-id="{{ match.fixture.id }}"
+                  src="{% static 'bettingapp/assets/content-icons/video-icon-active.png' %}" alt="Active play icon"
+                  loading="lazy" class="main-content__fav__active" />
+              </div>
+            </div>
+            {%endfor%}
+
           </article>
         </section>
         <section class="text container">
           <div class="extra">
             <div class="text__title">
               <div class="text__title__icon">
-                <img
-                  src="{% static 'bettingapp/assets/text-icons/extra-icon.png' %}"
-                  alt="Star icon"
-                  loading="lazy"
-                />
-                <img
-                  src="{% static 'bettingapp/assets/text-icons/extra-icon-active.png' %}"
-                  alt="Active star icon"
-                  loading="lazy"
-                  class="active"
-                />
+                <img src="{% static 'bettingapp/assets/text-icons/extra-icon.png' %}" alt="Star icon" loading="lazy" />
+                <img src="{% static 'bettingapp/assets/text-icons/extra-icon-active.png' %}" alt="Active star icon"
+                  loading="lazy" class="active" />
               </div>
               <h2>Extra</h2>
             </div>
@@ -413,17 +289,10 @@
           <div class="features">
             <div class="text__title">
               <div class="text__title__icon">
-                <img
-                  src="{% static 'bettingapp/assets/text-icons/features.png' %}"
-                  alt="Features icon"
-                  loading="lazy"
-                />
-                <img
-                  src="{% static 'bettingapp/assets/text-icons/features-active.png' %}"
-                  alt="Active features icon"
-                  loading="lazy"
-                  class="active"
-                />
+                <img src="{% static 'bettingapp/assets/text-icons/features.png' %}" alt="Features icon"
+                  loading="lazy" />
+                <img src="{% static 'bettingapp/assets/text-icons/features-active.png' %}" alt="Active features icon"
+                  loading="lazy" class="active" />
               </div>
               <h2>Features</h2>
             </div>
@@ -438,11 +307,8 @@
                   <dd>More Details</dd>
                 </div>
                 <div class="text__body__poster">
-                  <img
-                    src="{% static 'bettingapp/assets/text-icons/exv8_Features_BetBuilderV2.png' %}"
-                    alt="Bet builder feature icon"
-                    loading="lazy"
-                  />
+                  <img src="{% static 'bettingapp/assets/text-icons/exv8_Features_BetBuilderV2.png' %}"
+                    alt="Bet builder feature icon" loading="lazy" />
                 </div>
               </div>
               <div class="text__body__item">
@@ -455,11 +321,8 @@
                   <dd>Live Streaming rules apply.</dd>
                 </div>
                 <div class="text__body__poster">
-                  <img
-                    src="{% static 'bettingapp/assets/text-icons/exv8_Feature_StreamingV2.png' %}"
-                    alt="Streaming feature icon"
-                    loading="lazy"
-                  />
+                  <img src="{% static 'bettingapp/assets/text-icons/exv8_Feature_StreamingV2.png' %}"
+                    alt="Streaming feature icon" loading="lazy" />
                 </div>
               </div>
               <div class="text__body__item">
@@ -472,11 +335,8 @@
                   <dd>More Details</dd>
                 </div>
                 <div class="text__body__poster">
-                  <img
-                    src="{% static 'bettingapp/assets/text-icons/exv8_Features_AutoCashoutV2.png' %}"
-                    alt="Auto cash out feature icon"
-                    loading="lazy"
-                  />
+                  <img src="{% static 'bettingapp/assets/text-icons/exv8_Features_AutoCashoutV2.png' %}"
+                    alt="Auto cash out feature icon" loading="lazy" />
                 </div>
               </div>
               <div class="text__body__item">
@@ -489,11 +349,8 @@
                   <dd>More Details</dd>
                 </div>
                 <div class="text__body__poster">
-                  <img
-                    src="{% static 'bettingapp/assets/text-icons/exv8_Feature_EditBetV2.png' %}"
-                    alt="Edit bet feature icon"
-                    loading="lazy"
-                  />
+                  <img src="{% static 'bettingapp/assets/text-icons/exv8_Feature_EditBetV2.png' %}"
+                    alt="Edit bet feature icon" loading="lazy" />
                 </div>
               </div>
             </dl>
@@ -543,184 +400,158 @@
           </div>
         </section>
         <section>
-        <footer class="main-content__footer">
-          <div class="container">
-            <div class="footer__help">
-              <h2>Help</h2>
-              <ul>
-                <li>Deposits</li>
-                <li>Withdrawals</li>
-                <li>Contact Us</li>
-                <li>bet365 FAQ</li>
-                <li>Terms and Conditions</li>
-                <li>Responsible Gambling</li>
-                <li>Technical Issues</li>
-                <li>Privacy Policy</li>
-                <li>Cookies Policy</li>
-                <li>Fair Payouts</li>
-                <li>Complaints Procedure</li>
-                <li>Rules</li>
-                <li>Gaming Guide</li>
-              </ul>
-            </div>
-            <div class="footer__forms">
-              <h2>Forms & Stats</h2>
-              <ul>
-                <li>Sports & Betting News</li>
-                <li>Soccer Stats</li>
-                <li>Sports Stats</li>
-                <li>Horse Form</li>
-                <li>Horse Search</li>
-                <li>UK & Irish Racing Archive</li>
-                <li>Australian Horse Form</li>
-                <li>US Horse Form</li>
-                <li>UK & Irish Greyhound Form</li>
-              </ul>
-            </div>
-            <div class="footer__settings">
-              <div class="settings">
-                <h2>Settings</h2>
+          <footer class="main-content__footer">
+            <div class="container">
+              <div class="footer__help">
+                <h2>Help</h2>
                 <ul>
-                  <li>Language <i class="fa-solid fa-chevron-down"></i></li>
-                  <li>Odds Display <i class="fa-solid fa-chevron-down"></i></li>
+                  <li>Deposits</li>
+                  <li>Withdrawals</li>
+                  <li>Contact Us</li>
+                  <li>bet365 FAQ</li>
+                  <li>Terms and Conditions</li>
+                  <li>Responsible Gambling</li>
+                  <li>Technical Issues</li>
+                  <li>Privacy Policy</li>
+                  <li>Cookies Policy</li>
+                  <li>Fair Payouts</li>
+                  <li>Complaints Procedure</li>
+                  <li>Rules</li>
+                  <li>Gaming Guide</li>
                 </ul>
               </div>
-              <div class="results">
-                <h2>Scores & Results</h2>
+              <div class="footer__forms">
+                <h2>Forms & Stats</h2>
                 <ul>
-                  <li>Live Scores</li>
-                  <li>Results</li>
+                  <li>Sports & Betting News</li>
+                  <li>Soccer Stats</li>
+                  <li>Sports Stats</li>
+                  <li>Horse Form</li>
+                  <li>Horse Search</li>
+                  <li>UK & Irish Racing Archive</li>
+                  <li>Australian Horse Form</li>
+                  <li>US Horse Form</li>
+                  <li>UK & Irish Greyhound Form</li>
                 </ul>
               </div>
-              <div class="promotions">
-                <h2>Promotions</h2>
-                <ul>
-                  <li>Open Account Offer</li>
-                </ul>
-              </div>
-              <div class="audio">
-                <h2>Audio</h2>
-                <ul>
-                  <li>Horse Racing</li>
-                  <li>Greyhounds</li>
-                  <li>Soccer</li>
-                  <li>Cricket</li>
-                  <li>Six Nations</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-          <div class="info container">
-            <div class="info__sponsers">
-              <img
-                src="{% static 'bettingapp/assets/footer/internationalBettingIntegrity.png' %}"
-                alt="International Betting Integrity icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/footer/eCogra.png' %}"
-                alt="eCogra icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/footer/agog.png' %}"
-                alt="AGOG icon"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/footer/loketkansspel_v2.png' %}"
-                alt="LOKETKANSSPEL"
-                loading="lazy"
-              />
-              <img
-                src="{% static 'bettingapp/assets/footer/18.png' %}"
-                alt="Plus 18 icon"
-                loading="lazy"
-              />
-            </div>
-            <div class="info__text">
-              <div class="info__text__left">
-                <p>What does gambling cost you? Stop on time. 18+</p>
-                <div class="logo-poster">
-                  <img
-                    src="{% static 'bettingapp/assets/footer/bet365-logo.png' %}"
-                    alt="bet365 logo"
-                    loading="lazy"
-                  />
+              <div class="footer__settings">
+                <div class="settings">
+                  <h2>Settings</h2>
+                  <ul>
+                    <li>Language <i class="fa-solid fa-chevron-down"></i></li>
+                    <li>Odds Display <i class="fa-solid fa-chevron-down"></i></li>
+                  </ul>
                 </div>
-                <p>
-                  Registered Office: Hillside (New Media Malta) Plc, Office
-                  1/2373, Level G, Quantum House, 75 Abate Rigord Street, Ta’
-                  Xbiex, XBX 1120 Malta
-                </p>
-                <p>© 2001-2023 bet365. All rights reserved.</p>
-                <p>Server Time 08:02:55 CET</p>
+                <div class="results">
+                  <h2>Scores & Results</h2>
+                  <ul>
+                    <li>Live Scores</li>
+                    <li>Results</li>
+                  </ul>
+                </div>
+                <div class="promotions">
+                  <h2>Promotions</h2>
+                  <ul>
+                    <li>Open Account Offer</li>
+                  </ul>
+                </div>
+                <div class="audio">
+                  <h2>Audio</h2>
+                  <ul>
+                    <li>Horse Racing</li>
+                    <li>Greyhounds</li>
+                    <li>Soccer</li>
+                    <li>Cricket</li>
+                    <li>Six Nations</li>
+                  </ul>
+                </div>
               </div>
-              <ul class="info__text__right">
-                <li>Casino</li>
-                <li>Live Casino</li>
-                <li>Games</li>
-                <li>Poker</li>
-              </ul>
             </div>
-            <div class="info__policy">
-              <p>
-                By accessing, continuing to use or navigating throughout this
-                site you accept that we will use certain browser cookies to
-                improve your customer experience with us. bet365 only uses
-                cookies which will improve your experience with us and will not
-                interfere with your privacy. Please refer to our
-                <span class="cookies">Cookies Policy</span> for further
-                information on our use of cookies and how you can disable or
-                manage their use should you wish.
-              </p>
-              <p>
-                This site is protected by reCAPTCHA and the Google
-                <span class="privacy">Privacy Policy</span> and
-                <span class="privacy">Terms of Service</span> apply.
-              </p>
+            <div class="info container">
+              <div class="info__sponsers">
+                <img src="{% static 'bettingapp/assets/footer/internationalBettingIntegrity.png' %}"
+                  alt="International Betting Integrity icon" loading="lazy" />
+                <img src="{% static 'bettingapp/assets/footer/eCogra.png' %}" alt="eCogra icon" loading="lazy" />
+                <img src="{% static 'bettingapp/assets/footer/agog.png' %}" alt="AGOG icon" loading="lazy" />
+                <img src="{% static 'bettingapp/assets/footer/loketkansspel_v2.png' %}" alt="LOKETKANSSPEL"
+                  loading="lazy" />
+                <img src="{% static 'bettingapp/assets/footer/18.png' %}" alt="Plus 18 icon" loading="lazy" />
+              </div>
+              <div class="info__text">
+                <div class="info__text__left">
+                  <p>What does gambling cost you? Stop on time. 18+</p>
+                  <div class="logo-poster">
+                    <img src="{% static 'bettingapp/assets/footer/bet365-logo.png' %}" alt="bet365 logo"
+                      loading="lazy" />
+                  </div>
+                  <p>
+                    Registered Office: Hillside (New Media Malta) Plc, Office
+                    1/2373, Level G, Quantum House, 75 Abate Rigord Street, Ta’
+                    Xbiex, XBX 1120 Malta
+                  </p>
+                  <p>© 2001-2023 bet365. All rights reserved.</p>
+                  <p>Server Time 08:02:55 CET</p>
+                </div>
+                <ul class="info__text__right">
+                  <li>Casino</li>
+                  <li>Live Casino</li>
+                  <li>Games</li>
+                  <li>Poker</li>
+                </ul>
+              </div>
+              <div class="info__policy">
+                <p>
+                  By accessing, continuing to use or navigating throughout this
+                  site you accept that we will use certain browser cookies to
+                  improve your customer experience with us. bet365 only uses
+                  cookies which will improve your experience with us and will not
+                  interfere with your privacy. Please refer to our
+                  <span class="cookies">Cookies Policy</span> for further
+                  information on our use of cookies and how you can disable or
+                  manage their use should you wish.
+                </p>
+                <p>
+                  This site is protected by reCAPTCHA and the Google
+                  <span class="privacy">Privacy Policy</span> and
+                  <span class="privacy">Terms of Service</span> apply.
+                </p>
+              </div>
+            </div>
+          </footer>
+        </section>
+        <aside class="side-bar">
+          <div>
+
+            <div id="wg-api-football-game" data-host="v3.football.api-sports.io"
+              data-key="a10dd4036df5c7323538e962bbac57a6" data-id="" data-theme="" data-show-errors="false"
+              data-show-logos="true">
             </div>
           </div>
-        </footer>
-      </section>
-      <aside class="side-bar">
-        <div>
-        
-          <div id="wg-api-football-game"
-          data-host="v3.football.api-sports.io"
-          data-key="a10dd4036df5c7323538e962bbac57a6"
-          data-id=""
-          data-theme=""
-          data-refresh="15"
-          data-show-errors="false"
-          data-show-logos="true">
-          </div>
-        </div>
-      </aside>
-      <script
-        type="module"
-        src="https://widgets.api-sports.io/2.0.3/widgets.js">
-      </script>
-      <script>
-        document.addEventListener('click', function (event) {
-  
-          if (!event.target.matches('#match-data')) return
-          event.preventDefault()
-      
-          let id = event.target.getAttribute('data-match-id')
-      
-          let widget = document.getElementById('wg-api-football-game')
-          widget.innerHTML = ''
-          widget.setAttribute('data-id', id);
-      
-          window.document.dispatchEvent(new Event("DOMContentLoaded", {
-            bubbles: true,
-            cancelable: true
-          }));
-      })
-      
-    </script>        
+        </aside>
+        <script type="module" src="https://widgets.api-sports.io/2.0.3/widgets.js">
+        </script>
+        <script>
+          document.addEventListener('click', function (event) {
+            let widget = "";
+            widget = document.getElementById('wg-api-football-game')
+
+            widget.innerHTML = ''
+            if (!event.target.matches('#match-data')) return
+
+
+            let id = event.target.getAttribute('data-match-id')
+
+            widget.innerHTML = ''
+            widget.setAttribute('data-id', id);
+
+            window.document.dispatchEvent(new Event("DOMContentLoaded", {
+              bubbles: true,
+              cancelable: true
+            }));
+          })
+
+        </script>
     </main>
   </body>
- 
+
 </html>

@@ -11,12 +11,28 @@ def home(request):
         'x-rapidapi-host': "v3.football.api-sports.io",
         'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
     }
-    matches_endpoint = "/teams"
-    teams = get_football_data(matches_endpoint, headers)
 
-    return render(request, 'bettingapp/index.html', {'teams': teams})
+    fixtures = get_football_data("/fixtures?live=all", headers)
+    odds=get_football_data("/odds/live", headers)
+    getFixturesWithOdds(fixtures,odds)
+    return render(request, 'bettingapp/index.html', {'fixtures': fixtures})
 
 
+def getFixturesWithOdds(fixtures, odds):
+    # Iterate through fixtures and add odds where fixture.id matches
+    for index,fixture in enumerate(fixtures):
+        for odd in odds:
+            
+            if fixture['fixture']['id'] == odd['fixture']['id']:
+                   fixtures[index]['odds']=odd
+            
+
+    # Return the updated fixtures
+    return fixtures
+
+
+
+    return render(request, 'bettingapp/login.html')
 
 def login_view(request):
     return render(request, 'bettingapp/login.html')
@@ -96,7 +112,7 @@ import json
 def get_football_data(endpoint, headers):
     conn = http.client.HTTPSConnection("v3.football.api-sports.io")
 
-    conn.request("GET", "/fixtures?live=all", headers=headers)
+    conn.request("GET", endpoint, headers=headers)
 
     res = conn.getresponse()
     data = res.read().decode("utf-8")
@@ -110,5 +126,6 @@ def get_football_data(endpoint, headers):
 
     conn.close()
     return team_info
+
 
 
