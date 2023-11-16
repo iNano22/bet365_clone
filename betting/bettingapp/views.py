@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from datetime import datetime
+import http.client
+import json
 
 
 def home(request):
@@ -29,10 +30,6 @@ def getFixturesWithOdds(fixtures, odds):
 
     # Return the updated fixtures
     return fixtures
-
-
-
-    return render(request, 'bettingapp/login.html')
 
 def login_view(request):
     return render(request, 'bettingapp/login.html')
@@ -86,18 +83,11 @@ def signin(request):
         if user is not None:
             login(request, user) 
             messages.success(request, "Logged in successfully")
-            return render(request, "bettingapp/index.html", {"username": username,'data': 'dsadadss'})
+            return render(request, "bettingapp/index.html", {"username": username})
         else:
             messages.error(request, "Bad credentials")
             return redirect('login_view')  
     return render(request, "bettingapp/index.html")
-
-
-def index(request):
-    return render(request, 'bettingapp/index.html', {
-        'username': request.person.username,
-        'messages': messages.get_messages(request),
-    })
 
 
 def signout(request):
@@ -106,8 +96,7 @@ def signout(request):
     return redirect("home") 
 
 
-import http.client
-import json
+
 
 def get_football_data(endpoint, headers):
     conn = http.client.HTTPSConnection("v3.football.api-sports.io")

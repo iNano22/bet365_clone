@@ -121,6 +121,11 @@ ul {
   opacity: 1;
 }
 /* header style */
+
+.header {
+  width: 100%;
+}
+
 /* Top nav style */
 .top-nav {
   background-color: var(--secondBackground);
@@ -157,6 +162,7 @@ ul {
   background-color: var(--greenBackground);
   z-index: 2;
   position: relative;
+  width: 100%;
 }
 .main-nav__burger,
 .main-nav__alt-logo {
