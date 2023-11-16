@@ -94,7 +94,7 @@
     <!-- main content structure -->
     <main class="content">
 
-      <section class="main-content">
+      <section class="">
         <nav class="main-content__nav container">
           <ul class="main-content__icons">
             <li>
@@ -193,101 +193,28 @@
         </header>
         <section class="main-content__body">
           <article class="main-content__championship">
-            {%for match in fixtures%}
-            <div class="main-content__championship__head grid container">
-              <div class="main-content__fav">
-                {% if match.league.flag %}
-                  <img
-                    src="{{ match.league.flag }}"
-                    alt="Country Flag"
-                    loading="lazy"
-                  />
-                {% else %}
-                  <img
-                    src="{{ match.league.logo }}"
-                    alt="League Logo"
-                    loading="lazy"
-                  />
-                {% endif %}
-              </div>
-              <p class="main-content__championship__head__text">
-                {{match.league.name}}
-              </p>
-              <div class="main-content__championship__head__num1">{{match.odds.odds.0.name}}</div>
-           
-              <div class="main-content__championship__head__symbol"></div>
-            </div>
-            <div class="main-content__championship__body grid container">
-              <div class="main-content__fav">
-                <img src="{% static 'bettingapp/assets/content-icons/fav-icon-star.png' %}" alt="Favorite icon"
-                  loading="lazy" />
-                <img src="{% static 'bettingapp/assets/content-icons/fav-icon-star-active.png' %}"
-                  alt="Active Favorite icon" loading="lazy" class="main-content__fav__active" />
-              </div>
-              <div class="main-content__championship__body__text flex-between-center">
-                <div class="main-content__championship__body__data-item">
-                  <div class="main-content__championship__body__time">
+            {% for match in fixtures %}
+  <div class="main-content__championship__head grid container">
+    <div class="main-content__fav"></div>
+      <div class="main-content__championship__head__num1">{{match.odds.odds.0.name}}</div>
+    <div class="main-content__championship__head__symbol"></div>
+  </div>
 
-                    <p>{{ match.fixture.status.elapsed}}'</p>
+  <div class="main-content__championship__body grid container">
+    {% for value in match.odds.odds.0.values %}
+      <div class="main-content__championship__body__num">
+        <p>
+          {{ value.value }}
+          {% if value.handicap and value.handicap != "None" %}
+            {{ value.handicap }}
+          {% endif %}
+          - {{ value.odd }}
+        </p>
+      </div>
+    {% endfor %}
+  </div>
+{% endfor %}
 
-                  </div>
-
-                </div>
-                <div class="main-content__championship__body__name">
-                  <p>{{match.teams.home.name}}</p>
-                  <p>{{match.teams.away.name}}</p>
-                </div>
-                <div class="main-content__fav">
-                  <a href="{% url 'match_odds' %}">
-                  <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
-                    loading="lazy" />
-                  <img id="match-odds" data-match-id="{{ match.fixture.id }}"
-                  src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
-                  loading="lazy" class="main-content__fav__active" />
-                  </a>
-                </div> 
-                <div class="main-content__championship__body__insights">
-                  <span>{{match.goals.home}}</span>
-                  <br />
-                  <span>{{match.goals.away}}</span>
-                </div>
-              </div>
-              <div class="main-content__championship__body__num">
-                <p>
-                  {{ match.odds.odds.0.values.0.value }} 
-                  {% if match.odds.odds.0.values.0.handicap and match.odds.odds.0.values.0.handicap != "None" %}
-                    {{ match.odds.odds.0.values.0.handicap }}
-                  {% endif %}
-                  - {{ match.odds.odds.0.values.0.odd }}
-                </p>
-              </div>              
-              <div class="main-content__championship__body__num">
-                <p>
-                  {{ match.odds.odds.0.values.1.value }} 
-                  {% if match.odds.odds.0.values.1.handicap and match.odds.odds.0.values.1.handicap != "None" %}
-                    {{ match.odds.odds.0.values.1.handicap }}
-                  {% endif %}
-                  - {{ match.odds.odds.0.values.1.odd }}
-                </p>
-              </div>              
-              <div class="main-content__championship__body__num">
-                <p>
-                  {{ match.odds.odds.0.values.2.value }} 
-                  {% if match.odds.odds.0.values.2.handicap and match.odds.odds.0.values.2.handicap != "None" %}
-                    {{ match.odds.odds.0.values.2.handicap }}
-                  {% endif %}
-                   - {{ match.odds.odds.0.values.2.odd }}
-                </p>
-              </div>  
-              <div class="main-content__fav">
-                <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
-                  loading="lazy" />
-                <img id="match-data" data-match-id="{{ match.fixture.id }}"
-                src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
-                loading="lazy" class="main-content__fav__active" />
-              </div>            
-            </div>
-            {%endfor%}
 
           </article>
         </section>
@@ -558,40 +485,7 @@
             </div>
           </footer>
         </section>
-        <aside class="side-bar">
-          <div>
-            <div id="wg-api-football-game" 
-              data-host="v3.football.api-sports.io"
-              data-key="a10dd4036df5c7323538e962bbac57a6" 
-              data-id="" 
-              data-theme="false" 
-              data-refresh=""
-              data-show-errors="false"
-              data-show-logos="true">
-            </div>
-          </div>
-        </aside>
-        <script type="module" src="https://widgets.api-sports.io/2.0.3/widgets.js">
-        </script>
-        <script>
-          document.addEventListener('click', function (event) {
-
-            if (!event.target.matches('#match-data')) return
-            event.preventDefault()
-            
-            let id = event.target.getAttribute('data-match-id')
-
-            let widget = document.getElementById('wg-api-football-game')
-            widget.innerHTML = ''
-            widget.setAttribute('data-id', id);
-
-            window.document.dispatchEvent(new Event("DOMContentLoaded", {
-              bubbles: true,
-              cancelable: true
-            }));
-          })
-
-        </script>
+        
     </main>
   </body>
 

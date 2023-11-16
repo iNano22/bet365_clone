@@ -3,9 +3,9 @@
 
     --background-color: #505050;
     --background-color-header: #585858;
-    --color-text: #000;
-    --color-text-header: #000;
-    --color-green: #01d099;
+    --color-text: #fff;
+    --color-text-header: #fff;
+    --color-green: #126E51;
     --color-red: #f64e60;
     --color-yellow: #ffa800;
 
@@ -402,7 +402,7 @@ td > span {
 
 .wg_active {
     background: var(--color-green);
-    color: var(--background-color);
+    color: var(--color-text);
 }
 
  .wg_absolute {
@@ -508,7 +508,7 @@ td > span {
 
 .wg_grid {
     position:relative;
-    background-image: url("{% static 'bettingapp/assets/soccer_field.png' %}");
+    background-image: url("../assets/soccer_field.png");
     background-size: 100% 100%;
 }
 
@@ -582,13 +582,13 @@ td > span {
    content: ' ';
    vertical-align: middle;
    display: inline-block;
-   background-image: url("{% static 'assets/sprite.svg' %}");
+   background-image: url("../assets/sprite.svg");
    background-repeat: no-repeat;
    background-size: 13em 49.1em;
  }
 
  .no-svg .icon-svg:before {
-   background-image: url("{% static 'assets/sprite.svg' %}");
+   background-image: url("../assets/sprite.svg");
  }
 
  .icon-svg.icon-corner-flag:before {

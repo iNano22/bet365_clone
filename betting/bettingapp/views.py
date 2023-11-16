@@ -83,7 +83,18 @@ def signin(request):
         if user is not None:
             login(request, user) 
             messages.success(request, "Logged in successfully")
-            return render(request, "bettingapp/index.html", {"username": username})
+            
+            # Fetch data from the API
+            headers = {
+                'x-rapidapi-host': "v3.football.api-sports.io",
+                'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
+            }
+            fixtures = get_football_data("/fixtures?live=all", headers)
+            odds = get_football_data("/odds/live", headers)
+            getFixturesWithOdds(fixtures, odds)
+            
+            # Pass data to the template
+            return render(request, "bettingapp/index.html", {'fixtures': fixtures, 'username': username})
         else:
             messages.error(request, "Bad credentials")
             return redirect('login_view')  
@@ -92,7 +103,7 @@ def signin(request):
 
 def signout(request):
     logout(request)
-    messages.success(request, "Logged out in successfully")
+    messages.success(request, "Logged out successfully")
     return redirect("home") 
 
 
@@ -116,5 +127,15 @@ def get_football_data(endpoint, headers):
     conn.close()
     return team_info
 
+def match_odds(request):
+    # Fetch data from the API every time the home page is loaded
+    headers = {
+        'x-rapidapi-host': "v3.football.api-sports.io",
+        'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
+    }
 
+    fixtures = get_football_data("/fixtures?live=all", headers)
+    odds=get_football_data("/odds/live", headers)
+    getFixturesWithOdds(fixtures,odds)
+    return render(request, 'bettingapp/odds.html', {'fixtures': fixtures})
 
