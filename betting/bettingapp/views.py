@@ -19,17 +19,19 @@ def home(request):
     return render(request, 'bettingapp/index.html', {'fixtures': fixtures})
 
 
+
+
 def getFixturesWithOdds(fixtures, odds):
     # Iterate through fixtures and add odds where fixture.id matches
-    for index,fixture in enumerate(fixtures):
-        for odd in odds:
-            
-            if fixture['fixture']['id'] == odd['fixture']['id']:
-                   fixtures[index]['odds']=odd
-            
+    for fixture in fixtures:
+        fixture_id = fixture['fixture']['id']
+        matching_odds = [odd for odd in odds if odd['fixture']['id'] == fixture_id]
+        if matching_odds:
+            fixture['odds'] = matching_odds[0]  # Assign the odds to the fixture
 
     # Return the updated fixtures
     return fixtures
+
 
 def login_view(request):
     return render(request, 'bettingapp/login.html')
@@ -127,15 +129,16 @@ def get_football_data(endpoint, headers):
     conn.close()
     return team_info
 
-def match_odds(request):
+def match_odds(request, match_id):
     # Fetch data from the API every time the home page is loaded
     headers = {
         'x-rapidapi-host': "v3.football.api-sports.io",
         'x-rapidapi-key': "a10dd4036df5c7323538e962bbac57a6"
     }
 
-    fixtures = get_football_data("/fixtures?live=all", headers)
-    odds=get_football_data("/odds/live", headers)
-    getFixturesWithOdds(fixtures,odds)
-    return render(request, 'bettingapp/odds.html', {'fixtures': fixtures})
+    # Fetch the specific match data using the match_id
+    match = get_football_data(f"/fixtures?id={match_id}", headers)
+    odds = get_football_data("/odds/live", headers)
+    getFixturesWithOdds(match, odds)
 
+    return render(request, 'bettingapp/odds.html', {'match': match})

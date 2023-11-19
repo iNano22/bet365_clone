@@ -94,7 +94,7 @@
     <!-- main content structure -->
     <main class="content">
 
-      <section class="">
+      <section class="main-content">
         <nav class="main-content__nav container">
           <ul class="main-content__icons">
             <li>
@@ -193,28 +193,28 @@
         </header>
         <section class="main-content__body">
           <article class="main-content__championship">
-            {% for match in fixtures %}
-  <div class="main-content__championship__head grid container">
-    <div class="main-content__fav"></div>
-      <div class="main-content__championship__head__num1">{{match.odds.odds.0.name}}</div>
-    <div class="main-content__championship__head__symbol"></div>
-  </div>
-
-  <div class="main-content__championship__body grid container">
-    {% for value in match.odds.odds.0.values %}
-      <div class="main-content__championship__body__num">
-        <p>
-          {{ value.value }}
-          {% if value.handicap and value.handicap != "None" %}
-            {{ value.handicap }}
-          {% endif %}
-          - {{ value.odd }}
-        </p>
-      </div>
-    {% endfor %}
-  </div>
-{% endfor %}
-
+            {%for match in match%}
+            
+            {% for odd in match.odds.odds %}
+            <div class="main-content__championship__head grid container">
+                  <div class="main-content__championship__head__num1">{{ odd.name }}</div>
+            </div>
+            
+            {% for value in odd.values %}
+            <div class="main-content__championship__body grid container">
+              {{ value.value }}
+              {% if value.handicap and value.handicap != "None" %}
+                {{ value.handicap }}
+              {% endif %}:
+                <div class="main-content__championship__body__num">
+                  <p>
+                    {{ value.odd }}
+                  </p>
+                </div>
+              </div>
+              {% endfor %}
+            {% endfor %}
+            {% endfor %}
 
           </article>
         </section>

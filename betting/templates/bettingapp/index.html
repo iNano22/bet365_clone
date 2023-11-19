@@ -238,10 +238,10 @@
                   <p>{{match.teams.away.name}}</p>
                 </div>
                 <div class="main-content__fav">
-                  <a href="{% url 'match_odds' %}">
+                  <a href="{% url 'match_odds' match.fixture.id %}">
                   <img src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
                     loading="lazy" />
-                  <img id="match-odds" data-match-id="{{ match.fixture.id }}"
+                  <img id="match-odds" match-id="{{ match.fixture.id }}"
                   src="{% static 'bettingapp/assets/content-icons/data-statistics.png' %}" alt="Statistics icon"
                   loading="lazy" class="main-content__fav__active" />
                   </a>
